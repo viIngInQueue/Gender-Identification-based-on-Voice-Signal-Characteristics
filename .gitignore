@@ -34,12 +34,13 @@ ENV/
 
 # Data
 data/
+demo_data/
 *.wav
 *.mp3
 *.flac
 
-# Models
-models/
+# Trained Models (not source code)
+/models/
 *.pkl
 *.h5
 *.joblib
