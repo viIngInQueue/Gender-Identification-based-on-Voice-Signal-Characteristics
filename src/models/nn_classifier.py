@@ -26,8 +26,7 @@ class NNClassifier:
         self.dropout_rate = dropout_rate
         self.random_state = random_state
         
-        # Set random seeds
-        np.random.seed(random_state)
+        # Set TensorFlow random seed for reproducibility
         keras.utils.set_random_seed(random_state)
         
         self.model = None

@@ -6,6 +6,7 @@ Trains and evaluates all four classifiers: GMM, HMM, NN, and SVM.
 import os
 import sys
 import argparse
+import pickle
 import numpy as np
 from pathlib import Path
 
@@ -147,7 +148,6 @@ def train_all_models(data_dir, output_dir='models', test_size=0.2, random_state=
     print("=" * 80)
     
     # Save data scaler
-    import pickle
     scaler_path = os.path.join(output_dir, 'scaler.pkl')
     with open(scaler_path, 'wb') as f:
         pickle.dump(data_loader.scaler, f)

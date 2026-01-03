@@ -44,9 +44,14 @@ class HMMClassifier:
         """
         Convert feature matrix to sequences for HMM training.
         
+        Note: This implementation treats each feature dimension as a time step
+        by reshaping to (-1, 1). This is a simplification suitable for static
+        feature vectors. For better temporal modeling, consider extracting
+        frame-level features from audio segments.
+        
         Args:
             X: Feature matrix
-            sequence_length: Number of frames per sequence
+            sequence_length: Number of frames per sequence (unused in current implementation)
             
         Returns:
             sequences: List of feature sequences
@@ -120,9 +125,10 @@ class HMMClassifier:
                 # Predict based on higher likelihood
                 prediction = 1 if log_likelihood_female > log_likelihood_male else 0
                 predictions.append(prediction)
-            except Exception as e:
-                # If scoring fails, default to male (0)
-                predictions.append(0)
+            except Exception:
+                # If scoring fails, use class balance (0.5 probability for each)
+                # This avoids gender bias
+                predictions.append(np.random.randint(0, 2))
         
         return np.array(predictions)
     

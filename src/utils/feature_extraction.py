@@ -36,7 +36,7 @@ class FeatureExtractor:
         Returns:
             Audio time series
         """
-        audio, sr = librosa.load(file_path, sr=self.sample_rate)
+        audio, _ = librosa.load(file_path, sr=self.sample_rate)
         return audio
     
     def extract_mfcc(self, audio):
